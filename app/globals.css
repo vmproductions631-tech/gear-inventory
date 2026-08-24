@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+@theme {
+  /* VMP brand — ink + gold, gold held to ~10% of any layout */
+  --color-ink: #040707;
+  --color-gold: #edc332;
+  --color-gold-dark: #d9a91f;
+  --color-gold-deep: #b3851a;
+  --color-midnight: #14213d;
+  --color-paper: #ffffff;
+  --color-offwhite: #f7f8f8;
+  --color-n100: #edeeee;
+  --color-n200: #d9dbdb;
+  --color-n300: #bfc1c1;
+  --color-n400: #9a9c9c;
+  --color-n500: #6e7070;
+  --color-n600: #4b4d4d;
+  --color-n700: #2e3030;
+  --color-n800: #1a1c1c;
+  --color-success: #2e9e5b;
+  --color-warning: #e08a1e;
+  --color-error: #d64545;
+  --color-info: #3b82a0;
+
+  --font-display: var(--font-ss-headline), "Archivo", "Oswald", sans-serif;
+  --font-body: var(--font-poppins), sans-serif;
+  --font-marker: var(--font-atomic-marker), "Permanent Marker", cursive;
+}
+
+body {
+  background: var(--color-offwhite);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+/* Printable label sheet */
+@media print {
+  body {
+    background: #fff;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .label-card {
+    break-inside: avoid;
+    border: none !important;
+  }
+}
