@@ -17,10 +17,20 @@ export default function Scanner({
 }) {
   const [error, setError] = useState<string | null>(null);
   const lastRef = useRef<{ text: string; at: number }>({ text: "", at: 0 });
+  // The camera callback below is registered once and lives for the life of the
+  // scanner, so it reads the latest props through refs rather than being torn
+  // down and rebuilt on every prop change. Writing a ref during render is not
+  // safe under concurrent rendering, so the sync happens after commit.
   const onCodeRef = useRef(onCode);
   const pausedRef = useRef(paused);
-  onCodeRef.current = onCode;
-  pausedRef.current = paused;
+
+  useEffect(() => {
+    onCodeRef.current = onCode;
+  }, [onCode]);
+
+  useEffect(() => {
+    pausedRef.current = paused;
+  }, [paused]);
 
   useEffect(() => {
     const id = "qr-scanner-region";

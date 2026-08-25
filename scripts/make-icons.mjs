@@ -1,6 +1,9 @@
 // Generates PWA icons: white camera mark centered on ink background.
-const sharp = require("sharp");
-const path = require("path");
+import sharp from "sharp";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const INK = { r: 4, g: 7, b: 7, alpha: 1 };
 const SRC = path.join(__dirname, "..", "public", "brand", "logo-icon.png");

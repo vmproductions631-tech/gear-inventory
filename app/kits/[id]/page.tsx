@@ -49,7 +49,13 @@ export default function KitDetailPage() {
     setFree((all ?? []).filter((i) => i.kit_id === null));
   }, [id]);
 
+  // Fetch-on-mount. react-hooks/set-state-in-effect flags this because it can
+  // trace setState into load(); the cascade it warns about (render -> effect ->
+  // fetch -> setState -> render) is inherent to client-side data loading and is
+  // only avoidable with Suspense or a server component. load() is also the manual
+  // refresher called after every mutation, so it has to stay callable.
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     load();
   }, [load]);
 
